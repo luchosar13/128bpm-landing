@@ -21,10 +21,17 @@
 - Sin costos nuevos de terceros: Supabase Pro, Resend y Mercado Pago ya están previstos.
 - Seguridad: monto calculado en el servidor, cupo retenido con vencimiento y restricción en base de datos, webhook con firma verificada e idempotencia, CAPTCHA invisible y límites de intentos en formulario y códigos.
 
+## Reglas de negocio definidas (25/11/2026)
+
+- **RN-01 Precio:** paquete Londres → Ibiza, USD 4.000 por persona. Precios de Solo Ibiza y Solo Londres: a definir.
+- **RN-02 Seña mínima:** 20% del precio del paquete (USD 800 para Londres → Ibiza). El viajero puede elegir una seña mayor. El monto lo calcula siempre el servidor.
+- **RN-03 Moneda:** la seña se expresa en USD.
+- **RN-04 Retención de cupo:** al iniciar el pago, el cupo queda retenido 10 minutos. Si el pago no se aprueba en ese plazo, la reserva vence y el cupo se libera.
+- **RN-05 Confirmación:** la reserva pasa a CONFIRMADA solo cuando Mercado Pago aprueba el pago de la seña (webhook verificado).
+
 ## Pendientes antes de implementar
 
-- [ ] Monto o porcentaje de la seña y moneda de cobro (SUPUESTO en mockups: USD 300 cobrados en pesos).
-- [ ] Tiempo de retención del cupo durante el pago (SUPUESTO: 15 minutos).
+- [ ] Cómo se cobra la seña en USD: Mercado Pago Argentina cobra en pesos. Opciones: cobrar con MP el equivalente en pesos al tipo de cambio del día, o recibir dólares por transferencia (sale del flujo rápido). Confirmar con Mercado Pago y el contador.
 - [ ] Regla del saldo: cuotas mensuales iguales hasta X días antes de la salida (SUPUESTO: 30 días).
 - [ ] Validación legal: devolución de la seña dentro de los 10 días (Ley 24.240 art. 34, Res. SCI 424/2020) y Política de Cancelación.
 - [ ] Validación contable: percepciones sobre servicios turísticos al exterior cobrados en pesos.
